@@ -1,4 +1,8 @@
 
+using CandidateHub.Infrastructure.Data;
+using CandidateHub.Infrastructure.Interceptors;
+using Microsoft.EntityFrameworkCore;
+
 namespace CandidateHub.API
 {
     public class Program
@@ -13,6 +17,14 @@ namespace CandidateHub.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            if (string.IsNullOrEmpty(connectionString))
+                throw new InvalidOperationException("Connection string 'DefaultConnection' not found in appsettings.");
+
+            builder.Services.AddDbContext<ApplicationDbContext>(options => options
+                .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
+                .AddInterceptors(new AuditableEntitySaveChangesInterceptor()));
 
             var app = builder.Build();
 
