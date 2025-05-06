@@ -1,9 +1,16 @@
-﻿namespace CandidateHub.Application.Common
+﻿using System.Text.Json.Serialization;
+
+namespace CandidateHub.Application.Common
 {
     public class Result<T>
     {
+        [JsonPropertyOrder(0)]
         public bool IsSuccess { get; }
+
+        [JsonPropertyOrder(2)]
         public T Value { get; }
+
+        [JsonPropertyOrder(1)]
         public string Message { get; }
 
         private Result(bool isSuccess, T value, string message)

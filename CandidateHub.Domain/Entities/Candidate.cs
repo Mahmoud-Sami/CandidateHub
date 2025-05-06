@@ -37,6 +37,25 @@ namespace CandidateHub.Domain.Entities
             return candidate;
         }
 
+        public void Update(string firstName, string lastName, string phoneNumber, string? linkedInUrl = null,
+            string? gitHubUrl = null, string? comments = null, List<TimeInterval> timeIntervals = null)
+        {
+            this.FirstName = firstName;
+            this.LastName = lastName;
+
+            this.SetPhoneNumber(phoneNumber);
+            this.SetLinkedInUrl(linkedInUrl);
+            this.SetGitHubUrl(gitHubUrl);
+
+            this.Comments = comments;
+
+            if (timeIntervals is not null)
+            {
+                this.CallTimesPreference.Clear();
+                this.CallTimesPreference = timeIntervals;
+            }
+        }
+
         public void AddCallTimePreference(TimeInterval callTime)
         {
             if (callTime == null)

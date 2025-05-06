@@ -1,8 +1,6 @@
-﻿using CandidateHub.Domain.Entities;
-
-namespace CandidateHub.Application.DTOs
+﻿namespace CandidateHub.Application.Requests
 {
-    public record CreateCandidateDTO
+    public record CreateCandidateRequest
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -11,6 +9,6 @@ namespace CandidateHub.Application.DTOs
         public IEnumerable<TimeIntervalDTO> CallTimesPreference { get; set; }
         public string LinkedInUrl { get; set; }
         public string GitHubUrl { get; set; }
-        public string Comments { get; set; }
+        public string? Comments { get; set; }
     }
 }

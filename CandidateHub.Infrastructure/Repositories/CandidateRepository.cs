@@ -22,12 +22,18 @@ namespace CandidateHub.Infrastructure.Repositories
         public Task<Candidate?> GetByEmailAsync(string email)
         {
             return _context.Candidates
+                .Include(c => c.CallTimesPreference)
                 .FirstOrDefaultAsync(c => c.Email.ToLower() == email.ToLower());
         }
 
         public async Task<bool> IsExistsAsync(string email)
         {
             return await _context.Candidates.AnyAsync(c => c.Email.ToLower() == email.ToLower());
+        }
+
+        public void RemoveTimeIntervals(List<TimeInterval> timeIntervals)
+        {
+            _context.TimeInterval.RemoveRange(timeIntervals);
         }
 
         public async Task<int> SaveChangesAsync()

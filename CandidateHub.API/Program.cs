@@ -1,6 +1,9 @@
 
+using CandidateHub.Application.Services;
+using CandidateHub.Domain.Interfaces;
 using CandidateHub.Infrastructure.Data;
 using CandidateHub.Infrastructure.Interceptors;
+using CandidateHub.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace CandidateHub.API
@@ -25,6 +28,10 @@ namespace CandidateHub.API
             builder.Services.AddDbContext<ApplicationDbContext>(options => options
                 .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
                 .AddInterceptors(new AuditableEntitySaveChangesInterceptor()));
+
+
+            builder.Services.AddScoped<CandidateService>();
+            builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();
 
             var app = builder.Build();
 

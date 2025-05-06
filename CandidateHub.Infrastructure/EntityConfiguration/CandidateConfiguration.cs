@@ -14,6 +14,11 @@ namespace CandidateHub.Infrastructure.EntityConfiguration
             builder.Property(e => e.Email).IsRequired().HasMaxLength(100);
             builder.HasIndex(e => e.Email).IsUnique();
 
+            builder.Property(e => e.PhoneNumber).IsRequired().HasMaxLength(20);
+            builder.Property(e => e.LinkedInUrl).IsRequired(false).HasMaxLength(200);
+            builder.Property(e => e.GitHubUrl).IsRequired(false).HasMaxLength(200);
+            builder.Property(e => e.Comments).IsRequired(false);
+
             builder.HasMany(e => e.CallTimesPreference)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Cascade);

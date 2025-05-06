@@ -1,4 +1,4 @@
-﻿namespace CandidateHub.Application.DTOs
+﻿namespace CandidateHub.Application.Requests
 {
     public record TimeIntervalDTO
     {

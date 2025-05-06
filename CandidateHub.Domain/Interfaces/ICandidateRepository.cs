@@ -7,6 +7,7 @@ namespace CandidateHub.Domain.Interfaces
         void Add(Candidate candidate);
         Task<Candidate?> GetByEmailAsync(string email);
         Task<bool> IsExistsAsync(string email);
+        void RemoveTimeIntervals(List<TimeInterval> timeIntervals);
         Task<int> SaveChangesAsync();
     }
 }

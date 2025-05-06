@@ -1,11 +1,12 @@
-﻿using CandidateHub.Application.DTOs;
+﻿using CandidateHub.Application.Requests;
+using CandidateHub.Application.Response;
 using CandidateHub.Domain.Entities;
 
 namespace CandidateHub.Application.Mapping
 {
     internal static class MappingExtensions
     {
-        public static Candidate ToDomainEntity(this CreateCandidateDTO candidateDTO)
+        public static Candidate ToDomainEntity(this CreateCandidateRequest candidateDTO)
         {
             var candidate = Candidate.Create(candidateDTO.FirstName,
                 candidateDTO.LastName,
@@ -25,6 +26,5 @@ namespace CandidateHub.Application.Mapping
         }
 
         public static TimeInterval ToDomainEntity(this TimeIntervalDTO timeIntervalDTO) => new TimeInterval(timeIntervalDTO.Start, timeIntervalDTO.End);
-    
     }
 }
