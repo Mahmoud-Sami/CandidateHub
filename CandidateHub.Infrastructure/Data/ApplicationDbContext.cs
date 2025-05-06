@@ -11,6 +11,7 @@ namespace CandidateHub.Infrastructure.Data
         }
 
         public DbSet<Candidate> Candidates { get; set; }
+        public DbSet<TimeInterval> TimeInterval { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
