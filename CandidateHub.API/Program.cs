@@ -4,6 +4,8 @@ using CandidateHub.Domain.Interfaces;
 using CandidateHub.Infrastructure.Data;
 using CandidateHub.Infrastructure.Interceptors;
 using CandidateHub.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CandidateHub.API
@@ -29,6 +31,16 @@ namespace CandidateHub.API
                 .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
                 .AddInterceptors(new AuditableEntitySaveChangesInterceptor()));
 
+            builder.Services.AddApiVersioning(options =>
+            {
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.ApiVersionReader = ApiVersionReader.Combine(
+                    new HeaderApiVersionReader("x-api-version"),
+                    new QueryStringApiVersionReader("api-version"),
+                    new UrlSegmentApiVersionReader()
+                );
+            });
 
             builder.Services.AddScoped<CandidateService>();
             builder.Services.AddScoped<ICandidateRepository, CandidateRepository>();

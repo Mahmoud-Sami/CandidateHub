@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CandidateHub.API.Controllers
 {
-    [Route("api/candidate")]
+    [Route("api/v{version:apiVersion}/candidate")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class CandidateController : ControllerBase
     {
@@ -24,7 +25,7 @@ namespace CandidateHub.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<CandidateResponse>> UpsertCandidate([FromBody] CreateCandidateRequest candidateDto)
+        public async Task<ActionResult<CandidateResponse>> CreateOrUpdate([FromBody] CreateCandidateRequest candidateDto)
         {
             try
             {
@@ -55,7 +56,7 @@ namespace CandidateHub.API.Controllers
             }
         }
 
-        [HttpGet("{email}")]
+        [HttpGet("email/{email}")]
         public async Task<IActionResult> GetCandidateByEmail(string email)
         {
             var result = await _candidateService.GetByEmailAsyn(email);

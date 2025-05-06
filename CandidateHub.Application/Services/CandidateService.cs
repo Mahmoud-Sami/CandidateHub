@@ -60,6 +60,11 @@ namespace CandidateHub.Application.Services
             if (!candidateDto.CallTimesPreference.Any())
                 return Result<CandidateResponse>.Failure("At least one call time preference is required.");
 
+            foreach (var timeInterval in candidateDto.CallTimesPreference)
+            {
+                if (timeInterval.End <= timeInterval.Start)
+                    return Result<CandidateResponse>.Failure("End time must be greater than start time.");
+            }
             return Result<CandidateResponse>.Success(default);
         }
 
