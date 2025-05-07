@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateHub.Domain", "Cand
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateHub.Infrastructure", "CandidateHub.Infrastructure\CandidateHub.Infrastructure.csproj", "{8AEA9D1D-712C-401E-8509-23FD5AC4B5E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateHub.Test", "CandidateHub.Test\CandidateHub.Test.csproj", "{40E945C5-66A7-4872-A973-86030AECC264}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8AEA9D1D-712C-401E-8509-23FD5AC4B5E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AEA9D1D-712C-401E-8509-23FD5AC4B5E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AEA9D1D-712C-401E-8509-23FD5AC4B5E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40E945C5-66A7-4872-A973-86030AECC264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40E945C5-66A7-4872-A973-86030AECC264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40E945C5-66A7-4872-A973-86030AECC264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40E945C5-66A7-4872-A973-86030AECC264}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
